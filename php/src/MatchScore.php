@@ -25,7 +25,7 @@ class MatchScore
                 }
                 return $score;
             }else{
-                return $this->decodingScoreName($firstScore->getScore()) . '-' . $this->decodingScoreName($secondScore->getScore());
+                return sprintf("%s-%s", $this->decodingScoreName($firstScore->getScore()), $this->decodingScoreName($secondScore->getScore()));
             }
         }
     }
