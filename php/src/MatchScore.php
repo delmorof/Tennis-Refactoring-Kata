@@ -5,6 +5,7 @@ namespace TennisGame;
 class MatchScore
 {
 
+    private const MATCH_POINT = 4;
     public function getScore(Score $firstScore, Score $secondScore): string
     {
         $minusResult = $firstScore->getScore() - $secondScore->getScore();
@@ -12,10 +13,10 @@ class MatchScore
         if(0 === $minusResult){
             return $this->getDrawString($firstScore->getScore());
         }else{
-            if($firstScore->getScore() >= 4 || $secondScore->getScore() >= 4){
-                if ($minusResult == 1) {
+            if($this->checkMatchPoint($firstScore, $secondScore)){
+                if ($minusResult === 1) {
                     $score = "Advantage player1";
-                } elseif ($minusResult == -1) {
+                } elseif ($minusResult === -1) {
                     $score = "Advantage player2";
                 } elseif ($minusResult >= 2) {
                     $score = "Win for player1";
@@ -28,8 +29,10 @@ class MatchScore
             }
         }
     }
-
-
+    private function checkMatchPoint(Score $score1, Score $score2): bool
+    {
+        return $score1->getScore() >= self::MATCH_POINT || $score2->getScore() >= self::MATCH_POINT;
+    }
 
     /**
      * @return string
