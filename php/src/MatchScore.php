@@ -13,7 +13,7 @@ class MatchScore
         if(0 === $minusResult){
             return $this->getDrawString($firstScore->getScore());
         }else{
-            if($this->checkMatchPoint($firstScore, $secondScore)){
+            if($this->isMatchPoint($firstScore, $secondScore)){
                 if ($minusResult === 1) {
                     $score = "Advantage player1";
                 } elseif ($minusResult === -1) {
@@ -29,7 +29,7 @@ class MatchScore
             }
         }
     }
-    private function checkMatchPoint(Score $score1, Score $score2): bool
+    private function isMatchPoint(Score $score1, Score $score2): bool
     {
         return $score1->getScore() >= self::MATCH_POINT || $score2->getScore() >= self::MATCH_POINT;
     }
